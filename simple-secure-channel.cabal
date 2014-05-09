@@ -1,0 +1,95 @@
+name:                simple-secure-channel
+version:             0.1.0.0
+-- synopsis:            
+-- description:         
+license:             OtherLicense
+license-file:        LICENSE
+author:              Gregor Kopf <code@gregorkopf.de>
+-- maintainer:          
+-- copyright:           
+-- category:            
+build-type:          Simple
+-- extra-source-files:  
+cabal-version:       >=1.10
+
+library
+  exposed-modules:     Crypto.Protocol.JPAKE, Crypto.Protocol.SecureChannel, 
+                       Crypto.Protocol.SecureChannel.KeyExchange, 
+                       Crypto.Protocol.SecureChannel.Simple, Crypto.Mode.EAX, 
+                       Crypto.Util.CredentialsProvider, Crypto.Util.Encoding,
+                       Network.TCPServer, Network.AAA.Protocol,
+                       Crypto.Protocol.JPAKE.Groups
+  -- other-modules:       
+  -- other-extensions:    
+  build-depends:       base >=4.6 && <4.7, binary >=0.5 && <0.6, bytestring >=0.10 && <0.11, 
+                       cryptohash >=0.10 && <0.11, Twofish >=0.3 && <0.4, network  >=2.4 && <2.5, 
+                       cipher-aes >=0.2 && <0.3, MissingH >=1.2 && <1.3,
+                       directory >=1.2 && <1.3, filepath >=1.3 && <1.4, HDBC >=2.3, HDBC-sqlite3 >=2.3, 
+                       time >=1.4 && <1.5, base64-string >=0.2 && <0.3, mtl, crypto-api, largeword,
+                       hslogger, base64-bytestring, parsec, deepseq, deepseq-generics, DRBG
+
+  default-language:    Haskell2010
+  hs-source-dirs: lib
+  ghc-options: -O2 -Wall
+
+Executable accountStore
+  Main-is:           accountStore.hs
+  build-depends:       JPAKE, base >=4.6 && <4.7, binary >=0.5 && <0.6, bytestring >=0.10 && <0.11, 
+                       cryptohash >=0.10 && <0.11, Twofish >=0.3 && <0.4, 
+                       network >=2.4 && <2.5, cipher-aes >=0.2 && <0.3, MissingH >=1.2 && <1.3, 
+                       directory  >=1.2 && <1.3, filepath >=1.3 && <1.4, HDBC >=2.3, HDBC-sqlite3 >=2.3, 
+                       time >=1.4 && <1.5, base64-string >=0.2 && <0.3, mtl, crypto-api, largeword,
+                       hslogger, base64-bytestring, parsec, deepseq,
+                       deepseq-generics, OTP, DRBG
+  hs-source-dirs: apps
+  default-language:    Haskell2010
+
+Executable testService
+  Main-is:           testService.hs
+  build-depends:       base >=4.6 && <4.7, binary >=0.5 && <0.6, bytestring >=0.10 && <0.11, 
+                       cryptohash >=0.10 && <0.11, Twofish >=0.3 && <0.4, network >=2.4 && <2.5, 
+                       cipher-aes >=0.2 && <0.3, MissingH >=1.2 && <1.3, directory >=1.2 && <1.3, 
+                       filepath >=1.3 && <1.4, HDBC >=2.3, HDBC-sqlite3 >=2.3, time >=1.4 && <1.5, 
+                       base64-string >=0.2 && <0.3, mtl, crypto-api, largeword, hslogger, 
+                       base64-bytestring, parsec, deepseq, deepseq-generics,
+                       DRBG, JPAKE
+  hs-source-dirs: apps
+  default-language:    Haskell2010
+
+Executable testClient
+  Main-is:           testClient.hs
+  build-depends:       base >=4.6 && <4.7, binary >=0.5 && <0.6, bytestring >=0.10 && <0.11, 
+                       cryptohash >=0.10 && <0.11, Twofish >=0.3 && <0.4, network >=2.4 && <2.5, 
+                       cipher-aes >=0.2 && <0.3, MissingH >=1.2 && <1.3, directory >=1.2 && <1.3, 
+                       filepath >=1.3 && <1.4, HDBC >=2.3, HDBC-sqlite3 >=2.3, time >=1.4 && <1.5, 
+                       base64-string >=0.2 && <0.3, mtl, crypto-api, largeword, hslogger, 
+                       base64-bytestring, parsec, deepseq, deepseq-generics,
+                       OTP, DRBG, JPAKE
+  hs-source-dirs: apps
+  default-language:    Haskell2010
+  ghc-options: -O2 
+
+Executable jtunnel
+  Main-is:           jtunnel.hs
+  build-depends:       base >=4.6 && <4.7, binary >=0.5 && <0.6, bytestring >=0.10 && <0.11, 
+                       cryptohash >=0.10 && <0.11, Twofish >=0.3 && <0.4, network >=2.4 && <2.5, 
+                       cipher-aes >=0.2 && <0.3, MissingH >=1.2 && <1.3, directory >=1.2 && <1.3, 
+                       filepath >=1.3 && <1.4, HDBC >=2.3, HDBC-sqlite3 >=2.3, time >=1.4 && <1.5, 
+                       base64-string >=0.2 && <0.3, mtl, crypto-api, largeword, hslogger, 
+                       base64-bytestring, parsec, iproute, process, temporary, pretty-show, 
+                       deepseq, deepseq-generics, dns, JPAKE, DRBG
+  hs-source-dirs: apps
+  default-language:    Haskell2010
+  ghc-options: -O2 
+
+Executable accountClient
+  Main-is:           accountClient.hs
+  build-depends:       base >=4.6 && <4.7, binary >=0.5 && <0.6, bytestring >=0.10 && <0.11, 
+                       cryptohash >=0.10 && <0.11, Twofish >=0.3 && <0.4, network >=2.4 && <2.5, 
+                       cipher-aes >=0.2 && <0.3, MissingH >=1.2 && <1.3, directory >=1.2 && <1.3, 
+                       filepath >=1.3 && <1.4, HDBC >=2.3, HDBC-sqlite3 >=2.3, time >=1.4 && <1.5, 
+                       base64-string >=0.2 && <0.3, mtl, crypto-api, largeword, hslogger, 
+                       base64-bytestring, parsec, deepseq, deepseq-generics,
+                       JPAKE, DRBG
+  hs-source-dirs: apps
+  default-language:    Haskell2010

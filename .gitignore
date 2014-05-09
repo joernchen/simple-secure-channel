@@ -1,0 +1,9 @@
+dist/
+*.hi
+*.o
+*.hp
+*.prof
+*.swp
+*.sqlite3
+*.sqlite3-journal
+*.core
